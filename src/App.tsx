@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import Home from "./Pages/Home";
+import Search from "./Pages/Search"
+import MapPage from "./Pages/Map"
+import "antd/dist/antd.css";
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    document.body.style.backgroundColor = "#F4F6F6";
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        {<Redirect to={"/jenosize"} />}
+      </Route>
+      <Route exact path="/jenosize" component={Home} />
+      <Route exact path="/jenosize/search" component={Search} />
+      <Route exact path="/jenosize/map" component={MapPage} />
+    </Switch>
   );
-}
+};
 
 export default App;
